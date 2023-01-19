@@ -26,7 +26,7 @@ cd autofishbot
 python -m pip install -r requirements.txt
 ```
 (**Without** Git)
-- Download the repository [here](https://github.com/thejoabo/autofishbot/archive/refs/heads/main.zip)
+- Download the repository [here](https://github.com/Jambo199/AutoFishBot/archive/refs/heads/main.zip)
 - Extract the zip file
 - Open a terminal window in the extracted folder and type:
 ```bash
