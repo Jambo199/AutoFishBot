@@ -1,25 +1,37 @@
 #! /usr/bin/env python3
 #------------------------ IMPORTS --------------------------#
 from __future__ import annotations
-from app import *
+import app
+from dataclasses import field, dataclass
+
+from app.profile import Profile
+from app.message import Message, MessageCategory
+from app.captcha import MAX_CAPTCHA_REGENS, Captcha
+from app.menu import NotificationPriority, debugger, BaseMenu, CompactMenu, MainMenu
+from app.api_wrapper import APPLICATION_ID, BUTTON, COMMAND, TARGET_EVENT_NAMES, DiscordWrapper
+from app.config import ConfigManager
+from app.scheduler import Scheduler, SchStatus
+from app.cooldown import CooldownManager
+
 from websocket import WebSocketConnectionClosedException
 from threading import Thread
 from time import sleep, time
 from random import random, uniform
 
+from app.utils import sanitize
 
-@dataclass(slots=True)
+@dataclass()
 class Receiver:
     #Pointers
-    session: DiscordWrapper
-    config: ConfigManager 
-    menu: MainMenu
+    session: object
+    config: object
+    menu: object
     
     #Objects
-    captcha: Captcha = field(init=False)
-    profile: Profile = field(default_factory=Profile)
-    message: Message = field(default_factory=Message)
-    category: MessageCategory = field(default_factory=MessageCategory)
+    captcha: object = field(init=False)
+    profile: object = field(default_factory=Profile)
+    message: object = field(default_factory=Message)
+    category: object = field(default_factory=MessageCategory)
     event: dict = None
 
     #Flags

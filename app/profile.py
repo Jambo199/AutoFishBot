@@ -4,6 +4,7 @@ from __future__ import annotations
 from . import *
 from .utils import debugger
 from time import time
+from dataclasses import dataclass, field
 from re import sub
 
 #Todo: make functions/classes docstrings

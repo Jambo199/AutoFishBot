@@ -3,9 +3,10 @@ from __future__ import annotations
 
 from . import *
 from .utils import debugger
-from .menu import NotificationPriority
+from .menu import NotificationPriority, ConfigManager, BaseMenu
 from time import time, sleep
 from websocket import WebSocket
+from dataclasses import dataclass, field
 from requests import get, post, exceptions
 from random import choice, randint, random
 
@@ -72,7 +73,7 @@ BUTTON = 'button-interaction'
 
 
 #------------------------- CLASSES ---------------------------#
-@dataclass(slots=True)
+@dataclass()
 class Proxy:
     '''Proxy class, responsible for validating and constructing proper - ready-to-use - arguments
     for the request post/get methods.'''
@@ -461,6 +462,7 @@ class DiscordWrapper:
     def receive_event(self) -> dict:
         '''Receives events from the gateway.'''
         event = self.ws.recv()
+
         if event:
             deserialized = loads(event)
             try: 
@@ -503,6 +505,8 @@ class DiscordWrapper:
         except Exception as e:
             #Failed to connect.
             debugger.log(f'{e} : {self}', f'{self.name} - connect')
+            import traceback
+            traceback.print_exc()
             exit(e)
  
     

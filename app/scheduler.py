@@ -5,6 +5,7 @@ from . import *
 from .cooldown import CooldownManager
 from enum import Enum, auto
 from time import sleep, time
+from dataclasses import dataclass, field
 from random import random, uniform, randint
 
 
@@ -54,7 +55,7 @@ class CommandType:
 
 class Commands:
     #Todo: refactor this class later - use cooldown manager to generate base cooldowns dynamically
-    def __init__(self, config: ConfigManager) -> None:
+    def __init__(self, config) -> None:
         #Builds values strings
         bait_cd, bait_value = self._make_bait(config)
         mf_value, mt_value, boosts_cd = self._make_boosts(config.boosts_length)
@@ -94,7 +95,7 @@ class Commands:
     def _make_boosts(self, length: int) -> tuple[str]:
         return (f'fish{length}m', f'treasure{length}m', length*60)
     
-    def _make_bait(self, config: ConfigManager) -> tuple[float, str]:
+    def _make_bait(self, config) -> tuple[float, str]:
         if config.bait:
             bait_cd = randint(15, 30) * 60
             bait_amount = round(((bait_cd / config.user_cooldown) - 10) * 0.30, -1)
@@ -106,10 +107,10 @@ class Commands:
 @dataclass(slots=True)
 class Scheduler:
     #Todo: make the cooldown variable global
-    session: DiscordWrapper
-    config: ConfigManager
-    menu: BaseMenu
-    captcha: Captcha
+    session: object
+    config: object
+    menu: object
+    captcha: object
     dsp: object = field(init=False) #Dispatcher
     
     cooldown: CooldownManager = field(init=False)

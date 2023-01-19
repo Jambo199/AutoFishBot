@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from . import *
+from dataclasses import dataclass, field
 from random import randint, Random, uniform
 from statistics import mean, stdev, variance
 
@@ -24,7 +25,7 @@ change this value.
 
 
 #------------------------- CLASSES ---------------------------#
-@dataclass(slots=True)
+@dataclass()
 class CooldownManager:
     '''
     Simplified cooldown manager.

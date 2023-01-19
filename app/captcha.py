@@ -3,9 +3,10 @@ from __future__ import annotations
 
 from . import *
 from .utils import debugger
-from .menu import NotificationPriority
+from .menu import NotificationPriority, BaseMenu
 from requests import post, exceptions
 from threading import Thread
+from dataclasses import dataclass, field
 from time import sleep
 from json import loads
 from re import sub

@@ -5,7 +5,8 @@ from . import *
 from configparser import ConfigParser
 from webbrowser import Error as wbError, open as wbOpen
 from datetime import date
-from random import randbytes
+import random
+from dataclasses import dataclass, field
 from os import listdir, getcwd
 from re import sub 
 from sys import argv
@@ -26,7 +27,7 @@ class OutsideBoundariesError(Exception):
     def __init__(self, limits: tuple, value: any, field: str = 'Unk') -> None:
         super().__init__(f"{field}: Value outside boundaries ({limits[0]}, {limits[1]}), '{value}' given.") 
         
-@dataclass(slots=True)
+@dataclass()
 class ConfigManager:
     '''The configuration file manager to autofisherbot.'''
     #Todo: use argparse library instead of sys.argv for better (and more featured) argument parsing
@@ -325,7 +326,7 @@ class ConfigManager:
                 print(f'[E] Try again. Err -> {e}')
     
     def make_name(self) -> str:
-        return f'{date.today().strftime("%d-%m-%y")}-{randbytes(5).hex()}' 
+        return f'{date.today().strftime("%d-%m-%y")}-{random.randbytes(5).hex()}' 
     
 
 

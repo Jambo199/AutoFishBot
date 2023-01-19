@@ -3,9 +3,13 @@ from __future__ import annotations
 
 if __name__ == '__main__':
     from autofishbot import Dispatcher
-from . import *
+
+from .config import ConfigManager
+from .profile import Profile
+from .scheduler import Scheduler, Commands, SchStatus
+
 from .utils import convert_time, debugger
-from .scheduler import SchStatus
+from dataclasses import dataclass, field
 import curses
 from time import sleep
 from math import ceil
@@ -207,7 +211,7 @@ class BaseMenu:
         return f'({quantity}): {message}'
     
     #------------------------ INIT AND EXIT --------------------------#
-    def run(self, config: ConfigManager, dispatcher: Dispatcher, profile: Profile, scheduler: Scheduler, 
+    def run(self, config, dispatcher: Dispatcher, profile: Profile, scheduler: Scheduler, 
             threads: list[Thread]) -> None:
         '''Starts a new instance of the self.run function and starts the notifications thread (server).'''
         #Setup class pointers.
@@ -259,10 +263,12 @@ class BaseMenu:
     def _err_notification(self, e: str) -> None:
         '''Schedules an notification containing an error message, it automatically checks 
         if the notification isn't already in the queue.'''
+        """ 
         for notification, _ in self.notification_queue:
+                       
             if message == notification:
                 return None
-        
+        """
         err_message = f'[E] {self.name} error: {e}'
         debugger.log(e, f'{self.name} - run')
         self.notify(err_message, NotificationPriority.NORMAL)

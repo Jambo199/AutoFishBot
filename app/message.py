@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from . import *
+from dataclasses import dataclass, field
 from .utils import sanitize
 from re import sub
 
