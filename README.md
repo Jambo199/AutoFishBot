@@ -1,3 +1,9 @@
+# Credits!
+- [THEGOLDENPRO](https://github.com/THEGOLDENPRO)
+- [Jambo199](https://github.com/Jambo199)
+- [thejoabo](https://github.com/thejoabo)
+- [Agastya Rathore](https://github.com/RathoreAgastya)
+
 # AFB - Autofishbot
 Auto fishing bot made in Python 3 for [Virtual Fisher](https://virtualfisher.com/) Discord bot.
 
